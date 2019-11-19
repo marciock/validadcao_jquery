@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
+
+    <title>Olá, mundo!</title>
+  </head>
+  <body>
+   
+    <div class="container">
+        <div class="mt-5">
+            <form name="cadastro" id="cadastro" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control"
+                    id="nome" name="nome">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control"
+                    id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control"
+                    id="senha" name="senha">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmasenha">Confirm a Senha</label>
+                    <input type="password" class="form-control"
+                    id="confirmsenha" name="confirmsenha">
+                </div>
+                <div class="form-group">
+                    <label for="instagram">Instagram</label>
+                    <input type="text" class="form-control"
+                    id="instagram" name="instagram">
+                </div>
+
+
+                <div class="form-group">
+                   <button type="submit" class="btn btn-info">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="jquery/jquery-3.3.1.slim.min.js" ></script>
+    <script src="./jquery/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="./jquery/jquery-validation/dist/localization/messages_pt_BR.js"></script>
+    <script src="./jquery/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="popper/popper.min.js" ></script>
+    <script src="bootstrap/js/bootstrap.min.js" ></script>
+
+    <script>
+
+        jQuery.validator.addMethod('arrobaNoInicio',function(value,element){
+
+            if(value.indexOf('@')===0){
+                return true;
+            }else{
+                return false;
+            }
+        },'Tem que ter arroba !!!!')
+
+
+
+        $(document).ready(function(){
+            $('#cadastro').validate({
+                rules:{
+                    nome:{
+                        maxlength:100,
+                        minlength:10,
+                        minWords:2,
+                        required:true
+                    },
+                    email:{
+                        email:true,
+                        required:true
+                    },
+                    senha:{
+                        required:true,
+                        maxlength:11,
+                        minlength:6
+                    },
+                    confirmasenha:{
+                        required:true,
+                        maxlength:11,
+                        minlength:6,
+                        equalTo:'#senha'
+                    },
+                       instagram:{
+                        arrobaNoInicio:true
+                    }
+                }
+            })
+        })
+    </script>
+
+  </body>
+</html>
